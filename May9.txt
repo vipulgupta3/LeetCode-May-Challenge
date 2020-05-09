@@ -3,12 +3,13 @@ public:
     bool isPerfectSquare(int num) {
         if(num==0)
             return true;
-        for(double i=1;i<=num/i;i++)
+            double i=1;
+        for(i=1;i<=num/i;i++)
         {
-            if(i==double(num/i))
-                return true;
         }
+        if(i-1)==num/(i-1);
+        return true;
+        else
         return false;
-        
     }
 };
