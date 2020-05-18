@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool checkInclusion(string pattern, string str) {
+        int m = pattern.size(), n = str.size(), cnt = m;
+        vector<int> freq(26, 0);
+        for (int i = 0; i < m; ++i) {
+            // Freq is greater than 0 is charater exist in pattern, 0 otherwise
+            freq[pattern[i] - 'a']++;
+        }
+        for (int start = 0, end = 0; end < n and cnt; ++end) {
+            if (freq[str[end] - 'a']) {
+                // If character exists in pattern, i.e freq[char_end] > 0
+                // If cnt == 0, the required pattern is found
+                freq[str[end] - 'a']--; cnt--;
+            } else {
+                while (str[start++] != str[end]) {
+                    // Ajust start of window until freq[char_end] = 1
+                    ++freq[str[start - 1] - 'a']; cnt++;
+                }
+            }
+        }
+        return !cnt;
+    }
