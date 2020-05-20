@@ -1,0 +1,27 @@
+class Solution {
+public:
+queue p;
+void fill(TreeNode*root)
+{
+if(root==NULL)
+{
+return;
+}
+fill(root->left);
+p.push(root->val);
+fill(root->right);
+}
+
+int kthSmallest(TreeNode* root, int k) {
+    if(root==NULL)
+        return 0;
+    fill(root);
+    while(k>=2)
+    {
+        k--;
+        p.pop();
+    }
+    return p.front();
+        
+}
+};
